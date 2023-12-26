@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Add Training</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./styles/training-catalog.css"/>
+    <style type="text/css">
+        
+        .nav-item .nav-link {
+            color: white !important;
+            font-size: 17px;
+            margin-left: 10px;
+        }
+        .navbar-brand {
+        color: white;
+        }
+        .navbar-nav {
+        margin-right: 20px; /* Adjust as needed */
+        }   
+
+        .floating-board {
+            width: 70%; /* Set width as a percentage of the viewport width */
+            max-width: 2000px; /* Set a maximum width if needed */
+            height: 60px;
+            position: absolute;
+            top: 15%;
+            right: 0;
+            transform: translateX(0%);
+            background-color: #193059; 
+            text-align: left;
+            margin-left: 20px;
+            border-radius: 10px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 5%;
+            width: 100%;
+            z-index: 1000;
+            /* Ensure it appears above other elements */
+            background-color: #192F59;
+            color: white;
+        }
+
+        .dropdown-menu a {
+            font-size: 14px;
+            padding: 8px px;
+            color: white;
+            background-color: #192F59;
+            text-decoration: none;
+        }
+
+        .dropdown-menu {
+            transition: opacity 0.01s ease-in-out;
+            color: #FDC800;
+        }
+
+
+        .nav-item.dropdown:hover .dropdown-menu,
+        .nav-item.dropdown .dropdown-menu a:hover,
+        .nav-item.dropdown:hover .nav-link,
+        .nav-item.dropdown:hover .nav-link {
+            display: block;
+            border-color: #192F59;
+            background-color: #192F59;
+            color: #FDC800 !important;
+        }
+        .container{
+            background-color: #98b3e6;
+            color: black;
+        }
+
+
+            .form-inputs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .form-inputs-container > * {
+            flex: 1 0 100%;
+        }
+
+        @media (min-width: 768px) {
+            .form-inputs-container > * {
+                flex: 1 0 50%;
+            }
+        }
+        .back-button-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000; /* This ensures the button stays on top of other elements */
+        }
+
+        .back-button {
+            background-color: #193059;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .back-button a:hover{
+            background-color: #fad312; /* Change background color on hover */
+        }
+
+
+        .notification-container {
+            display: none;
+            position: fixed;
+            top: 50px;
+            /* right: 50%; */
+            padding: 15px;
+            /* Increased padding */
+            background-color: #4CAF50;
+            /* Green background color */
+            color: #ffffff;
+            /* White text color */
+            border: 2px solid #4CAF50;
+            /* Green border */
+            border-radius: 8px;
+            /* Rounded corners */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            /* Increased box shadow */
+            z-index: 1000;
+        }
+
+</style>
+
+</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #192F59;">
+        <a class="navbar-brand" href="#" style="color: white;">
+            <!-- <img src="./assets/logoum-01h-1.png" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+            Quality Management and Enhancement Centre (QMEC)
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <!--Button for notification -->
+                    <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                        </svg></a>
+                    <div id="notificationContainer" class="notification-container">
+                        <div class="notification-content">
+                            <span id="notificationText">New Registration request. Check it Out!</span>
+                            <button type="button" class="close-notification" onclick="hideNotification()">×</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="Main Page.html">HOME</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        TRAINING MANAGEMENT
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a id="latestDropdownItem" class="dropdown-item" href="listTraining.html">LIST TRAINING</a>
+                        <a class="dropdown-item" href="listfeed.html">LIST FEEDBACK</a>
+                        <a class="dropdown-item" href="Add.html">ADD TRAINING</a>
+                        <a class="dropdown-item" href="edit1.html">EDIT TRAINING</a>
+                        <a class="dropdown-item" href="Form.html">CREATE FEEDBACK FORM</a>
+                    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        STAFF MANAGEMENT
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="liststaff.html">LIST STAFF</a>
+                        <a class="dropdown-item" href="Approval.html">REQUEST REGISTRATION</a>
+                        <!-- <a class="dropdown-item" href="#">By Year</a> -->
+                    </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            REPORTS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="trainingreport.html">TRAINING</a>
+                            <a class="dropdown-item" href="attendancereport.html">ATTENDANCE</a>
+                            <a class="dropdown-item" href="feedbackreport.html">FEEDBACK</a>
+                            <!-- <a class="dropdown-item" href="#">By Year</a> -->
+                        </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="faqs.html">FAQS</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">ABOUT</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                          </svg>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="dashboard.html">Dashboard</a>
+                        <a class="dropdown-item" href="login.html">Logout</a>
+                       
+
+                    </div>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </nav>
+
+    <img src="Image/logoum.png" alt="Logo UM"
+    style="width: 18%; height: 100; margin-top: 2%;">
+
+    <div class="floating-board">
+        <p style="margin: 10px; margin-left: 10px; font-weight: normal; color: white; font-size: 25px;">ADD TRAINING</p>
+    </div>
+
+        <div class="container">
+            <form action="/submit_training" method="post">
+                <div class="form-group">
+                    <label for="trainingPoster">Training Poster</label>
+                    <input type="file" class="form-control-file" id="trainingPoster" name="trainingPoster" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="trainingName">Training Name</label>
+                    <input type="text" class="form-control" id="trainingName" name="trainingName" required>
+                </div>
+                <div class="form-group">
+                    <label for="trainingDescription">Training Description</label>
+                    <textarea class="form-control" id="trainingDescription" name="trainingDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="trainingDuration">Training Duration</label>
+                    <input type="text" class="form-control" id="trainingDuration" name="trainingDuration" required>
+                </div>
+                <div class="form-group">
+                    <label for="NumberofSlots">Number of Slots</label>
+                    <input type="number" class="form-control" id="NumberofSlots" name="NumberofSlots" required>
+                </div>
+                <div class="form-group">
+                    <label for="attendanceQR">Attendance QR Code</label>
+                    <input type="file" class="form-control-file" id="attendanceQR" name="attendanceQR" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="trainingMaterial">Training Material</label>
+                    <input type="file" class="form-control-file" id="trainingMaterial" name="trainingMaterial" accept=".pdf, .doc, .docx">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        
+      <script>
+        // Function to show notification
+                    function showNotification() {
+                        const notificationContainer = document.getElementById('notificationContainer');
+                        notificationContainer.style.display = 'block';
+                        // setTimeout(() => {
+                        //     hideNotification();
+                        // }, 5000); // Auto-hide after 5 seconds (adjust as needed)
+                    }
+        
+                    // Function to hide notification
+                    function hideNotification() {
+                        const notificationContainer = document.getElementById('notificationContainer');
+                        notificationContainer.style.display = 'none';
+                    }
+        
+                    // Event listener to show notification on bell icon click
+                    document.querySelector('.navbar-nav .nav-link[href="#"]').addEventListener('click', showNotification);
+                    </script>
+
+<div class="back-button-container">
+    <a href="Training Management.html" class="back-button">Back</a>
+</div>
+                
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
