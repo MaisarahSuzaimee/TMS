@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Training Details</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" type="text/css" href="./styles/training-catalog.css" />
+    <style type="text/css">
+        .nav-item:hover .nav-link {
+            color: #FDC800 !important;
+        }
+        .nav-item .nav-link {
+            color: white !important;
+            font-size: 14px;
+            margin-left: 30px;
+        }
+
+        .navbar-brand {
+            color: white;
+        }
+
+        .navbar-nav {
+            margin-right: 40px;
+        }
+
+        .floating-board {
+            width: 1164px;
+            height: 100%px;
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #193059;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .training-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .training-card {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 50px 139.5px;
+        }
+
+        .training-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 50px 0;
+        }
+
+        .training-container {
+            width: 800px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .training-poster {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            flex: 5;
+            position: relative;
+        }
+
+        .training-name {
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 10%;
+            width: 100%;
+            z-index: 1000;
+            background-color: #192F59;
+            color: white;
+        }
+
+        .dropdown-menu a {
+            font-size: 14px;
+            padding: 8px 20px;
+            color: white;
+            background-color: #192F59;
+            text-decoration: none;
+        }
+
+        .dropdown-menu {
+            transition: opacity 0.01s ease-in-out;
+            color: #FDC800;
+        }
+
+        .nav-item.dropdown:hover .dropdown-menu,
+        .nav-item.dropdown .dropdown-menu a:hover,
+        .nav-item.dropdown:hover .nav-link,
+        .nav-item.dropdown:hover .nav-link {
+            display: block;
+            border-color: #192F59;
+            background-color: #192F59;
+            color: #FDC800 !important;
+        }
+
+        .details-label {
+            font-weight: bold;
+        }
+
+        .details-content {
+            margin-top: 5px;
+        }
+
+        .button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white !important;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #3c8e40;
+            text-decoration: none;
+        }
+
+        .button a {
+            color: white !important;
+        }
+
+        .notification-container {
+            display: none;
+            position: fixed;
+            top: 50px;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #193059;">
+        <a class="navbar-brand" href="#" style="color: white;">
+            Quality Management and Enhancement Centre (QMEC)
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <!--Button for notification -->
+                    <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                            fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                        </svg></a>
+                    <div id="notificationContainer" class="notification-container">
+                        <div class="notification-content">
+                            <span id="notificationText">New Training Upload. Check it Out!</span>
+                            <button type="button" class="close-notification" onclick="hideNotification()">×</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="index_db.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="faq_dashboard.html">FAQS</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
+                            class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd"
+                                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Dashboard</a>
+                        <a class="dropdown-item" href="/Users/maisarah/VSCode/TMS/index.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+        <!-- Logo UM -->
+    <img src="/Users/maisarah/VSCode/TMS/Image/logoum.png" alt="Logo UM"
+        style="width: 18%; height: 100; margin-top: -2%;">
+
+        <!-- Board -->
+    <div class="floating-board">
+        <p style="margin: 0; font-weight: bold; color: white; font-size: 25px;">
+            <Ri:a>MICROSOFT VISIO TRAINING</Ri:a>
+        </p>
+    </div>
+
+    <!-- Training Detail -->
+    <div class="training-section">
+        <div class="training-container">
+            <img src="/Users/maisarah/VSCode/TMS/Image/Training 4.png" alt="Training 1" class="training-poster">
+            <div class="details-box">
+                <p class="training-name">Details:
+                <div class="details-label">Description:</div>
+                </p>
+                <div class="details-content">Microsoft Visio training is designed to equip individuals and professionals
+                    with the skills needed to effectively use Microsoft Visio, a powerful diagramming and vector
+                    graphics application. </div>
+                <div class="details-label">Date:</div>
+                <div class="details-content">October 12, 2023</div>
+                <div class="details-label">Category:</div>
+                <div class="details-content">Public</div> 
+                <a href="registration_db.html" class="button">Register Now</a>
+            </div>
+        </div>
+
+        <script>
+        // Function to show notification
+            function showNotification() {
+                const notificationContainer = document.getElementById('notificationContainer');
+                notificationContainer.style.display = 'block';
+                // setTimeout(() => {
+                //     hideNotification();
+                // }, 5000); // Auto-hide after 5 seconds (adjust as needed)
+            }
+
+            // Function to hide notification
+            function hideNotification() {
+                const notificationContainer = document.getElementById('notificationContainer');
+                notificationContainer.style.display = 'none';
+            }
+
+            // Event listener to show notification on bell icon click
+            document.querySelector('.navbar-nav .nav-link[href="#"]').addEventListener('click', showNotification);
+
+        </script>
+
+</body>
+
+</html>
