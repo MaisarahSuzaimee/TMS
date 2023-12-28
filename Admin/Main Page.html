@@ -160,14 +160,6 @@
             padding: 5px;
         }
 
-              button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
         #openChatBtn {
             position: fixed;
             bottom: 20px;
@@ -200,7 +192,7 @@
             z-index: 1000;
         }
 
-      button-noti {
+      button {
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -230,7 +222,7 @@
                     <div id="notificationContainer" class="notification-container">
                         <div class="notification-content">
                             <span id="notificationText">New Registration request. Check it Out!</span>
-                            <button type="button-noti" class="close-notification" onclick="hideNotification()">×</button>
+                            <button type="button" class="close-notification" onclick="hideNotification()">×</button>
                         </div>
                     </div>
                 </li>
@@ -350,9 +342,9 @@
        <div class="chat-messages" id="chatMessages"></div>
        <div class="chat-input">
            <input type="text" id="messageInput" placeholder="Type your message...">
-           <button type="button" onclick="sendMessage()">Send</button>
-       </div>
-   </div>
+           <button class="send-button" style="background-color: #007bff; " onclick="sendMessage()">Send</button>
+        </div>
+    </div>
 
    <script>
         function sendMessage() {
