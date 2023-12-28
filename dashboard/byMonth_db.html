@@ -476,7 +476,6 @@
                     } else {
                         alert("Please select a month first.");
                     }
-                    hideButtons();
                 }
 
                 function compareTrainingCards(a, b) {
@@ -498,7 +497,6 @@
                     // If the months are the same, compare by day
                     return dateA.getDate() - dateB.getDate();
 
-                    hideButtons();
                 }
 
                 function showTrainingProgramsByMonth(month) {
@@ -536,7 +534,6 @@
                             trainingSection.appendChild(card);
                         });
                     }
-                    hideButtons();
                 }
 
                 function sendMessage() {
@@ -582,23 +579,19 @@
 
                 document.getElementById('UMStaffDropdownItem').addEventListener('click', function () {
                     showTrainingProgramsByCategory('UM Staff');
-                    hideButtons(); // Call hideButtons to show the live chat button
                 });
 
 
                 document.getElementById('PublicDropdownItem').addEventListener('click', function () {
                     showTrainingProgramsByCategory('Public');
-                    hideButtons();
                 });
 
                 document.getElementById('latestDropdownItem').addEventListener('click', function () {
                     showAllTrainingPrograms();
-                    hideButtons();
                 });
 
                 document.getElementById('byMonthDropdownItem').addEventListener('click', function () {
                     showTrainingProgramsByMonth(selectedMonth);
-                    hideButtons();
                 });
                 
             </script>
